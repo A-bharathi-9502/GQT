@@ -1,0 +1,16 @@
+package Multithreding;
+class Program4 {
+    volatile boolean flag = true;
+
+    public static void main(String[] args) throws Exception {
+        Program4 v = new Program4();
+
+        new Thread(() -> {
+            while(v.flag){}
+            System.out.println("Stopped");
+        }).start();
+
+        Thread.sleep(1000);
+        v.flag = false;
+    }
+}

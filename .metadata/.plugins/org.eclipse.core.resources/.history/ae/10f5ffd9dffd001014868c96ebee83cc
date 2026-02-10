@@ -1,0 +1,27 @@
+package Interfaces;
+interface Flyable {
+    void fly();
+}
+
+interface Swimmable {
+    void swim();
+}
+
+class Bird implements Flyable {
+    public void fly() {
+        System.out.println("Bird is flying");
+    }
+}
+
+class Program2 implements Swimmable {
+    public void swim() {
+        System.out.println("Fish is swimming");
+    }
+
+    public static void main(String[] args) {
+        Bird b = new Bird();
+        Program2 f = new Program2();
+        b.fly();
+        f.swim();
+    }
+}

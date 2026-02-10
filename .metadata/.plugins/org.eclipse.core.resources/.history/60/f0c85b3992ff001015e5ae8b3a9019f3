@@ -1,0 +1,48 @@
+package Ecommerce;
+import java.util.*;
+class Cart {
+private Product[] items = new Product[200];
+private int count = 0;
+public void addProduct(Product p) {
+	items[count++] = p;
+	System.out.println(Colors.GREEN+"✔ Product added to cart"+Colors.RESET);
+	}
+public void showBill() {
+    double total = 0;
+
+    System.out.println(Colors.GREEN + "\n==================== BILL RECEIPT ====================" + Colors.RESET);
+
+    // Table Header
+    System.out.printf(
+        Colors.GREEN + "%-5s %-15s %-30s %-10s\n" + Colors.RESET,
+        "S.No", "Category", "Item", "Price(Rs)"
+    );
+    System.out.println(Colors.GREEN + "------------------------------------------------------" + Colors.RESET);
+
+    // Table Rows
+    for (int i = 0; i < count; i++) {
+        Product p = items[i];
+
+        System.out.printf(
+            p.getColor() + "%-5d %-15s %-30s %-10.2f\n" + Colors.RESET,
+            (i + 1),
+            p.getCategory(),
+            p.getName(),
+            p.getPrice()
+        );
+
+        total += p.getPrice();
+    }
+
+    // Footer
+    System.out.println(Colors.GREEN + "------------------------------------------------------" + Colors.RESET);
+    System.out.printf(
+        Colors.GREEN + "%-50s %-10.2f\n" + Colors.RESET,
+        "TOTAL AMOUNT :", total
+    );
+    System.out.println(Colors.GREEN + "======================================================" + Colors.RESET);
+}
+public boolean isEmpty() {
+	return count == 0;
+	}
+}

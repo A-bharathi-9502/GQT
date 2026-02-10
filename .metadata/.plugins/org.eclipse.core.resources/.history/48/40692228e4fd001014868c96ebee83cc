@@ -1,0 +1,30 @@
+package Interfaces;
+interface Drawable {
+    void draw();
+}
+
+interface Erasable {
+    void erase();
+}
+
+class WhiteBoard implements Drawable {
+    public void draw() {
+        System.out.println("Drawing on whiteboard");
+    }
+}
+
+class ChalkBoard implements Erasable {
+    public void erase() {
+        System.out.println("Erasing chalkboard");
+    }
+}
+
+public class Program21 {
+    public static void main(String[] args) {
+        WhiteBoard w = new WhiteBoard();
+        ChalkBoard c = new ChalkBoard();
+
+        w.draw();
+        c.erase();
+    }
+}

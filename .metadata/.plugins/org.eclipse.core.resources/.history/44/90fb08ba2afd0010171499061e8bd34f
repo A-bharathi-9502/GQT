@@ -1,0 +1,27 @@
+package Inheritance;
+class Person1 {
+    String name;
+    int age;
+}
+
+class Employee2 extends Person1 {
+    int id;
+    double salary;
+}
+
+class Program9 {
+    public static void main(String[] args) {
+        Person p = new Person();
+        p.name = "Ravi";
+        p.age = 35;
+
+        Employee e = new Employee();
+        e.name = "Bharathi";
+        e.age = 22;
+        e.id = 101;
+        e.salary = 25000;
+
+        System.out.println(p.name + " " + p.age);
+        System.out.println(e.name + " " + e.age + " " + e.id + " " + e.salary);
+    }
+}

@@ -1,0 +1,27 @@
+package Inheritance;
+class Animal2{
+    String name;
+    String type;
+}
+
+class Bird extends Animal {
+    String color;
+    double wingspan;
+}
+
+class Program27 {
+    public static void main(String[] args) {
+        Animal a = new Animal();
+        a.name = "Generic";
+        a.type = "Animal";
+
+        Bird b = new Bird();
+        b.name = "Parrot";
+        b.type = "Bird";
+        b.color = "Green";
+        b.wingspan = 0.5;
+
+        System.out.println(a.name + " " + a.type);
+        System.out.println(b.name + " " + b.type + " " + b.color + " " + b.wingspan);
+    }
+}

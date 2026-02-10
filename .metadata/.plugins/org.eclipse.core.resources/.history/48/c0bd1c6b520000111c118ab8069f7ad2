@@ -1,0 +1,19 @@
+package Collections;
+import java.util.*;
+public class Launch4 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		LinkedList <Integer>ll=new LinkedList<Integer>();
+		ll.add(10);
+		ll.add(20);
+		ll.add(30);
+		System.out.println(ll);
+		ll.add(2,35);
+		System.out.println(ll);
+		LinkedList ll1=(LinkedList)ll.clone();
+		ll.addAll(ll1);
+		System.out.println(ll);
+	}
+
+}

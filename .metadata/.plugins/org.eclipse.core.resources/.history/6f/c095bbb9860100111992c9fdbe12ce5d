@@ -1,0 +1,31 @@
+package Collections;
+import java.util.*;
+class Cricketer{
+	String name;
+	int runs;
+	int wickets;
+	int matches;
+	int catches;
+	public Cricketer(String name, int runs, int wickets, int matches, int catches) {
+		super();
+		this.name = name;
+		this.runs = runs;
+		this.wickets = wickets;
+		this.matches = matches;
+		this.catches = catches;
+	}
+	@Override
+	public String toString() {
+		return name+"---"+runs+"---"+wickets+"---"+matches+"---"+catches;
+	}
+	
+}
+public class Launch10 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub]
+		Cricketer c1=new Cricketer("sachin",1800,235,300,500);
+
+	}
+
+}

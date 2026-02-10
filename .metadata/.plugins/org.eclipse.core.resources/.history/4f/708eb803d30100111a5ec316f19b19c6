@@ -1,0 +1,151 @@
+package SwingExample;
+
+
+import javax.swing.*;
+import java.awt.*;
+
+public class JavaQuizUI {
+
+    JFrame frame;
+    JLabel questionLabel, rewardLabel;
+    JRadioButton optA, optB, optC, optD;
+    ButtonGroup group;
+    JButton submitBtn, audienceBtn, fiftyBtn;
+
+    int index = 0;
+    String userName;
+
+    public JavaQuizUI() {
+        userName = JOptionPane.showInputDialog("Enter your name:");
+        JOptionPane.showInputDialog("Enter your age:");
+
+        frame = new JFrame("Quiz Application");
+        frame.setSize(600, 400);
+        frame.setLayout(null);
+
+        questionLabel = new JLabel();
+        questionLabel.setBounds(40, 30, 500, 30);
+        questionLabel.setFont(new Font("Arial", Font.BOLD, 14));
+
+        optA = new JRadioButton();
+        optB = new JRadioButton();
+        optC = new JRadioButton();
+        optD = new JRadioButton();
+
+        optA.setBounds(40, 80, 300, 25);
+        optB.setBounds(40, 110, 300, 25);
+        optC.setBounds(40, 140, 300, 25);
+        optD.setBounds(40, 170, 300, 25);
+
+        group = new ButtonGroup();
+        group.add(optA);
+        group.add(optB);
+        group.add(optC);
+        group.add(optD);
+
+        submitBtn = new JButton("Submit");
+        submitBtn.setBounds(40, 220, 100, 30);
+
+        audienceBtn = new JButton("Audience Poll");
+        audienceBtn.setBounds(160, 220, 140, 30);
+
+        fiftyBtn = new JButton("50 / 50");
+        fiftyBtn.setBounds(320, 220, 100, 30);
+
+        rewardLabel = new JLabel("Reward: ₹0");
+        rewardLabel.setBounds(40, 270, 200, 30);
+
+        frame.add(questionLabel);
+        frame.add(optA);
+        frame.add(optB);
+        frame.add(optC);
+        frame.add(optD);
+        frame.add(submitBtn);
+        frame.add(audienceBtn);
+        frame.add(fiftyBtn);
+        frame.add(rewardLabel);
+
+        loadQuestion();
+
+        submitBtn.addActionListener(e -> checkAnswer());
+        audienceBtn.addActionListener(e -> useAudiencePoll());
+        fiftyBtn.addActionListener(e -> useFiftyFifty());
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+
+    void loadQuestion() {
+        if (index >= QuestionBank.questions.length) {
+            JOptionPane.showMessageDialog(frame,
+                    "Quiz Completed!\nYou won ₹" + RewardSystem.reward);
+            System.exit(0);
+        }
+
+        questionLabel.setText("Q" + (index + 1) + ": " + QuestionBank.questions[index]);
+
+        String[] opts = QuestionBank.options[index];
+        optA.setText(opts[0]);
+        optB.setText(opts[1]);
+        optC.setText(opts[2]);
+        optD.setText(opts[3]);
+
+        optA.setVisible(!opts[0].equals(""));
+        optB.setVisible(!opts[1].equals(""));
+        optC.setVisible(!opts[2].equals(""));
+        optD.setVisible(!opts[3].equals(""));
+
+        group.clearSelection();
+    }
+
+    void checkAnswer() {
+        char userAns;
+
+        if (optA.isSelected()) userAns = 'a';
+        else if (optB.isSelected()) userAns = 'b';
+        else if (optC.isSelected()) userAns = 'c';
+        else if (optD.isSelected()) userAns = 'd';
+        else {
+            JOptionPane.showMessageDialog(frame, "Please select an option");
+            return;
+        }
+
+        if (AnswerValidate.isCorrect(userAns, QuestionBank.answers[index])) {
+            RewardSystem.giveReward(userName);
+            rewardLabel.setText("Reward: ₹" + RewardSystem.reward);
+            index++;
+            loadQuestion();
+        } else {
+            JOptionPane.showMessageDialog(frame,
+                    "Wrong Answer!\nQuiz Over\nYou won ₹" + RewardSystem.reward);
+            System.exit(0);
+        }
+    }
+
+    void useAudiencePoll() {
+        if (LifeLines.audienceUsed || index == 9) {
+            JOptionPane.showMessageDialog(frame, "Audience Poll not available");
+            return;
+        }
+
+        JOptionPane.showMessageDialog(frame,
+                "Audience suggests option: " + QuestionBank.answers[index]);
+        LifeLines.audienceUsed = true;
+    }
+
+    void useFiftyFifty() {
+        if (LifeLines.fiftyUsed || index == 9) {
+            JOptionPane.showMessageDialog(frame, "50/50 not available");
+            return;
+        }
+
+        LifeLines.fiftyFifty(QuestionBank.options[index],
+                QuestionBank.answers[index]);
+        LifeLines.fiftyUsed = true;
+        loadQuestion();
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(JavaQuizUI::new);
+    }
+}

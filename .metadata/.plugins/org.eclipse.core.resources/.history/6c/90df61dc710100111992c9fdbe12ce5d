@@ -1,0 +1,38 @@
+package Collections;
+import java.util.*;
+public class Launch8 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ArrayList<Integer>alist=new ArrayList<Integer>();
+		alist.add(100);
+		alist.add(50);
+		alist.add(50);
+		alist.add(60);
+		alist.add(30);
+		alist.add(60);
+		System.out.println(alist);
+		TreeSet<Integer> tree=new TreeSet<Integer>();
+		tree.addAll(alist);
+		System.out.println(tree);
+		System.out.println("----------------------------");
+		Collections.sort(alist);
+		System.out.println(alist);
+		System.out.println(Collections.emptyList());
+		Collections.swap(alist, 0, 4);
+		System.out.println(alist);
+		System.out.println(Collections.frequency(alist, 60));
+		ArrayList<Integer>al=new ArrayList<Integer>();
+		al.add(100);
+		al.add(50);
+		al.add(50);
+		al.add(60);
+		al.add(30);
+		al.add(90);
+		System.out.println(alist.size());
+		System.out.println(al.size());
+		Collections.copy(alist, al);
+		System.out.println(alist);
+	}
+
+}

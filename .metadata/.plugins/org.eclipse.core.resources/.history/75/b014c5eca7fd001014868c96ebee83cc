@@ -1,0 +1,13 @@
+package Exceptions;
+import java.nio.*;
+
+class Program23 {
+    public static void main(String[] args) {
+        try {
+            ByteBuffer buffer = ByteBuffer.allocate(2);
+            buffer.get();
+        } catch (BufferUnderflowException e) {
+            System.out.println("Buffer underflow");
+        }
+    }
+}

@@ -1,0 +1,30 @@
+package Inheritance;
+class Animal1 {
+    String name;
+    String type;
+}
+
+class Dog1 extends Animal1 {
+    String breed;
+}
+
+class Cat1 extends Animal1 {
+    String color;
+}
+
+class Program19 {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.name = "Bruno";
+        d.type = "Pet";
+        d.breed = "German Shepherd";
+
+        Cat c = new Cat();
+        c.name = "Kitty";
+        c.type = "Pet";
+        c.color = "White";
+
+        System.out.println(d.name + " " + d.type + " " + d.breed);
+        System.out.println(c.name + " " + c.type + " " + c.color);
+    }
+}

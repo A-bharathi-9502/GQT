@@ -1,0 +1,27 @@
+package Inheritance;
+class Shape {
+    String type;
+    String color;
+}
+
+class Rectangle1 extends Shape {
+    int length;
+    int width;
+}
+
+class Program23 {
+    public static void main(String[] args) {
+        Shape s = new Shape();
+        s.type = "Shape";
+        s.color = "Green";
+
+        Rectangle r = new Rectangle();
+        r.type = "Rectangle";
+        r.color = "Blue";
+        r.length = 10;
+        r.width = 5;
+
+        System.out.println(s.type + " " + s.color);
+        System.out.println(r.type + " " + r.color + " " + r.length + " " + r.width);
+    }
+}
